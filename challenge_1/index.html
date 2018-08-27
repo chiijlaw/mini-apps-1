@@ -11,28 +11,32 @@
 
 <body>
     <div id="top-banner">Player X Starts First!</div>
+    <div id="board">
 
-    <div class="row row1" style="display: inline-table;padding: 10px;">
-        <p class="square" id="1,1">_</p>
-        <p class="square" id="1,2">_</p>
-        <p class="square" id="1,3">_</p>
+        <div class="row row1">
+            <p class="square" id="1,1">_</p>
+            <p class="square" id="1,2">_</p>
+            <p class="square" id="1,3">_</p>
+        </div>
+        <div class="row row2">
+            <p class="square" id="2,1">_</p>
+            <p class="square" id="2,2">_</p>
+            <p class="square" id="2,3">_</p>
+        </div>
+        <div class="row row3">
+            <p class="square" id="3,1">_</p>
+            <p class="square" id="3,2">_</p>
+            <p class="square" id="3,3">_</p>
+        </div>
     </div>
-    <div class="row row2" style="display: inline-table;padding: 10px;">
-        <p class="square" id="2,1">_</p>
-        <p class="square" id="2,2">_</p>
-        <p class="square" id="2,3">_</p>
-    </div>
-
-    <div class="row row3" style="display: inline-table;padding: 10px;">
-        <p class="square" id="3,1">_</p>
-        <p class="square" id="3,2">_</p>
-        <p class="square" id="3,3">_</p>
-    </div>
-    <div style="display: inline-table;">Score
+    <div id="score-board">
+        <h1>Score</h1>
         <p id="names">X:O</p>
         <p id="score">0:0</p>
     </div>
-    <button id="reset" style="display: block;">Next Round!</button>
+    <div>
+        <button id="reset">Next Round!</button>
+    </div>
     <script src="app.js"></script>
 </body>
 

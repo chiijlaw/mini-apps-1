@@ -1,5 +1,4 @@
 var board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
-console.log("Game Start!");
 var topBanner = document.getElementById("top-banner");
 var nextClick = "X";
 var boardValue = 1;
@@ -8,6 +7,7 @@ var score = { X: 0, O: 0 };
 var prevWinner = "X";
 
 var namesElement = document.getElementById("names");
+// Get player names
 var playerXName = window.prompt("What is Player X's name?") || "X";
 var playerOName = window.prompt("What is Player O's name?") || "O";
 namesElement.innerText = `${playerXName} vs ${playerOName}`;

@@ -1,6 +1,13 @@
-/* div {
+body {
+  background-color: dodgerblue;
   display: flex;
-} */
+  flex-direction: column;
+}
+
+div {
+  display: flex;
+  justify-content: center;
+}
 
 .square,
 .row {
@@ -9,11 +16,36 @@
 
 .square {
   color: aliceblue;
+  font-size: 25px;
   text-align: center;
   width: 18px;
+  margin: 10px 30px;
 }
 
 #top-banner {
   background-color: darkblue;
   color: aliceblue;
+  font-size: 45px;
+}
+
+#board {
+  flex-direction: column;
+  align-self: center;
+  width: fit-content;
+}
+
+#score-board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: aliceblue;
+  font-size: 25px;
+}
+
+#score-board p {
+  font-size: 20px;
+}
+
+#reset {
+  display: flex;
 }
