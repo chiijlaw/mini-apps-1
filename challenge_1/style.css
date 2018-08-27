@@ -1,0 +1,19 @@
+/* div {
+  display: flex;
+} */
+
+.square,
+.row {
+  background-color: dodgerblue;
+}
+
+.square {
+  color: aliceblue;
+  text-align: center;
+  width: 18px;
+}
+
+#top-banner {
+  background-color: darkblue;
+  color: aliceblue;
+}

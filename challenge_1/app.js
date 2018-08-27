@@ -1,15 +1,21 @@
 var board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
 console.log("Game Start!");
-var topBanner = document.getElementById("top banner");
+var topBanner = document.getElementById("top-banner");
 var nextClick = "X";
 var boardValue = 1;
 var playCount = 0;
 var score = { X: 0, O: 0 };
-var prevWinner = "";
+var prevWinner = "X";
+
+var namesElement = document.getElementById("names");
+var playerXName = window.prompt("What is Player X's name?") || "X";
+var playerOName = window.prompt("What is Player O's name?") || "O";
+namesElement.innerText = `${playerXName} vs ${playerOName}`;
+topBanner.innerText = `${playerXName} starts first!`;
 
 var updateScoreBoard = function() {
   var scoreElement = document.getElementById("score");
-  scoreElement.innerText = `${score.X} : ${score.O}`;
+  scoreElement.innerText = `${score.X}  :  ${score.O}`;
 };
 
 var updateBoardOnClick = function(node) {
@@ -23,17 +29,19 @@ var updateBoardOnClick = function(node) {
 var xWins = function() {
   score.X++;
   prevWinner = "X";
-  alert("X Wins!");
+  alert(`${playerXName} Wins!`);
   updateScoreBoard();
-  topBanner.innerText = "X Wins!";
+  topBanner.innerText = `${playerXName} Wins!`;
+  playCount = 0;
 };
 
 var oWins = function() {
   score.O++;
   prevWinner = "O";
-  alert("O Wins!");
+  alert(`${playerOName} Wins!`);
   updateScoreBoard();
-  topBanner.innerText = "O Wins!";
+  topBanner.innerText = `${playerOName} Wins!`;
+  playCount = 0;
 };
 
 var checkForWin = function() {
@@ -41,9 +49,9 @@ var checkForWin = function() {
   var majorDiagSum = 0;
   var minorDiagSum = 0;
   // check through whole board state
-  for (let i = 0; i < board.length; i++) {
+  for (var i = 0; i < board.length; i++) {
     var rowSum = 0;
-    for (let j = 0; j < board[i].length; j++) {
+    for (var j = 0; j < board[i].length; j++) {
       rowSum += board[i][j];
       // add to column Sums
       if (j === 0) {
@@ -75,7 +83,7 @@ var checkForWin = function() {
     oWins();
   }
   // check if a player wins by column
-  for (let k = 0; k < columnSums.length; k++) {
+  for (var k = 0; k < columnSums.length; k++) {
     if (columnSums[k] === 3) {
       xWins();
     } else if (columnSums[k] === -3) {
@@ -85,44 +93,52 @@ var checkForWin = function() {
   // will alert tie after 9 plays
   if (playCount === 9) {
     alert("Tie!");
+    topBanner.innerText = "Tie!";
   }
   updateScoreBoard();
 };
 
-var handleSquareClick = event => {
+var handleSquareClick = function(event) {
   updateBoardOnClick(event);
   event.toElement.innerText = nextClick;
+  event.toElement.onclick = function() {
+    alert("Click another square!");
+  };
   if (nextClick === "X") {
     nextClick = "O";
     boardValue = -1;
-    topBanner.innerText = "Player O's Turn!";
+    topBanner.innerText = `${playerOName}'s turn!`;
   } else {
     nextClick = "X";
     boardValue = 1;
-    topBanner.innerText = "Player X's Turn!";
+    topBanner.innerText = `${playerXName}'s turn!`;
   }
   checkForWin();
 };
 
 var squareElements = document.getElementsByClassName("square");
-for (let i = 0; i < squareElements.length; i++) {
-  squareElements[i].onclick = handleSquareClick;
-}
+var addClickEventToSquares = function() {
+  for (var i = 0; i < squareElements.length; i++) {
+    squareElements[i].onclick = handleSquareClick;
+  }
+};
+addClickEventToSquares();
 
 var resetElement = document.getElementById("reset");
 resetElement.addEventListener("click", function(event) {
   board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
-  for (let i = 0; i < squareElements.length; i++) {
-    squareElements[i].innerText = "[ ]";
+  for (var i = 0; i < squareElements.length; i++) {
+    squareElements[i].innerText = "_";
   }
   if (prevWinner === "X") {
-    topBanner.innerText = "Player X Starts First!";
+    topBanner.innerText = `${playerXName} starts first!`;
     nextClick = "X";
     boardValue = 1;
   } else {
-    topBanner.innerText = "Player O Starts First!";
+    topBanner.innerText = `${playerOName} starts first!`;
     nextClick = "O";
     boardValue = -1;
   }
   playCount = 0;
+  addClickEventToSquares();
 });
