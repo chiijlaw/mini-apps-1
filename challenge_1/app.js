@@ -3,12 +3,14 @@ console.log("Game Start!");
 var topBanner = document.getElementById("top banner");
 var nextClick = "X";
 var boardValue = 1;
+var playCount = 0;
 
 var updateBoardOnClick = function(node) {
   var coordinates = node.toElement.id.split(",");
   var row = parseInt(coordinates[0] - 1);
   var column = parseInt(coordinates[1] - 1);
   board[row][column] = boardValue;
+  playCount++;
 };
 
 var checkForWin = function() {
@@ -56,6 +58,10 @@ var checkForWin = function() {
     } else if (columnSums[k] === -3) {
       alert("O Wins!");
     }
+  }
+  // will alert tie of 9 plays have been made
+  if (playCount === 9) {
+    alert("Tie!");
   }
 };
 
