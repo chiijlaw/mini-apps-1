@@ -40,5 +40,7 @@ resetElement.addEventListener("click", function(event) {
   for (let i = 0; i < squareElements.length; i++) {
     squareElements[i].innerText = "[ ]";
   }
-  topBanner = "Player X Starts First!";
+  var topBanner = document.getElementById("top banner");
+  var nextClick = "X";
+  var boardValue = 1;
 });
