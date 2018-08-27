@@ -5,6 +5,7 @@ var nextClick = "X";
 var boardValue = 1;
 var playCount = 0;
 var score = { X: 0, O: 0 };
+var prevWinner = "";
 
 var updateScoreBoard = function() {
   var scoreElement = document.getElementById("score");
@@ -17,6 +18,22 @@ var updateBoardOnClick = function(node) {
   var column = parseInt(coordinates[1] - 1);
   board[row][column] = boardValue;
   playCount++;
+};
+
+var xWins = function() {
+  score.X++;
+  prevWinner = "X";
+  alert("X Wins!");
+  updateScoreBoard();
+  topBanner.innerText = "X Wins!";
+};
+
+var oWins = function() {
+  score.O++;
+  prevWinner = "O";
+  alert("O Wins!");
+  updateScoreBoard();
+  topBanner.innerText = "O Wins!";
 };
 
 var checkForWin = function() {
@@ -46,35 +63,23 @@ var checkForWin = function() {
     }
     // check if a player win's by row
     if (rowSum === 3) {
-      score.X++;
-      alert("X Wins!");
-      updateScoreBoard();
+      xWins();
     } else if (rowSum === -3) {
-      score.O++;
-      alert("O Wins!");
-      updateScoreBoard();
+      oWins();
     }
   }
   //check if a player win's by diagonal
   if (majorDiagSum === 3 || minorDiagSum === 3) {
-    score.X++;
-    alert("X Wins!");
-    updateScoreBoard();
+    xWins();
   } else if (majorDiagSum === -3 || minorDiagSum === -3) {
-    score.O++;
-    alert("O Wins!");
-    updateScoreBoard();
+    oWins();
   }
   // check if a player wins by column
   for (let k = 0; k < columnSums.length; k++) {
     if (columnSums[k] === 3) {
-      score.X++;
-      alert("X Wins!");
-      updateScoreBoard();
+      xWins();
     } else if (columnSums[k] === -3) {
-      score.O++;
-      alert("O Wins!");
-      updateScoreBoard();
+      oWins();
     }
   }
   // will alert tie after 9 plays
@@ -110,8 +115,14 @@ resetElement.addEventListener("click", function(event) {
   for (let i = 0; i < squareElements.length; i++) {
     squareElements[i].innerText = "[ ]";
   }
-  topBanner.innerText = "Player X Starts First!";
-  nextClick = "X";
-  boardValue = 1;
+  if (prevWinner === "X") {
+    topBanner.innerText = "Player X Starts First!";
+    nextClick = "X";
+    boardValue = 1;
+  } else {
+    topBanner.innerText = "Player O Starts First!";
+    nextClick = "O";
+    boardValue = -1;
+  }
   playCount = 0;
 });
