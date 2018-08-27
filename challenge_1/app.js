@@ -10,9 +10,11 @@ var handleSquareClick = event => {
   }
 };
 var squareElements = document.getElementsByClassName("square");
-squareElements.onclick = event => alert("clicked it");
+for (let i = 0; i < squareElements.length; i++) {
+  squareElements[i].onclick = handleSquareClick;
+}
 var oneOne = document.getElementById("1,1");
-oneOne.onclick = handleSquareClick;
+// oneOne.onclick = handleSquareClick;
 var resetElement = document.getElementById("reset");
 resetElement.addEventListener("click", function(event) {
   board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
