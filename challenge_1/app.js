@@ -4,6 +4,12 @@ var topBanner = document.getElementById("top banner");
 var nextClick = "X";
 var boardValue = 1;
 var playCount = 0;
+var score = { X: 0, O: 0 };
+
+var updateScoreBoard = function() {
+  var scoreElement = document.getElementById("score");
+  scoreElement.innerText = `${score.X} : ${score.O}`;
+};
 
 var updateBoardOnClick = function(node) {
   var coordinates = node.toElement.id.split(",");
@@ -40,29 +46,42 @@ var checkForWin = function() {
     }
     // check if a player win's by row
     if (rowSum === 3) {
+      score.X++;
       alert("X Wins!");
+      updateScoreBoard();
     } else if (rowSum === -3) {
+      score.O++;
       alert("O Wins!");
+      updateScoreBoard();
     }
   }
   //check if a player win's by diagonal
   if (majorDiagSum === 3 || minorDiagSum === 3) {
+    score.X++;
     alert("X Wins!");
+    updateScoreBoard();
   } else if (majorDiagSum === -3 || minorDiagSum === -3) {
+    score.O++;
     alert("O Wins!");
+    updateScoreBoard();
   }
   // check if a player wins by column
   for (let k = 0; k < columnSums.length; k++) {
     if (columnSums[k] === 3) {
+      score.X++;
       alert("X Wins!");
+      updateScoreBoard();
     } else if (columnSums[k] === -3) {
+      score.O++;
       alert("O Wins!");
+      updateScoreBoard();
     }
   }
-  // will alert tie of 9 plays have been made
+  // will alert tie after 9 plays
   if (playCount === 9) {
     alert("Tie!");
   }
+  updateScoreBoard();
 };
 
 var handleSquareClick = event => {
@@ -94,4 +113,5 @@ resetElement.addEventListener("click", function(event) {
   topBanner.innerText = "Player X Starts First!";
   nextClick = "X";
   boardValue = 1;
+  playCount = 0;
 });
