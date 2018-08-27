@@ -6,12 +6,16 @@ var boardValue = 1;
 var extractBoardSquareFromId = function(id) {
   id.split(",");
 };
-var handleSquareClick = event => {
-  var coordinates = event.toElement.id.split(",");
+var updateBoardOnClick = function(node) {
+  var coordinates = node.toElement.id.split(",");
   var row = parseInt(coordinates[0] - 1);
   var column = parseInt(coordinates[1] - 1);
-  event.toElement.innerText = nextClick;
   board[row][column] = boardValue;
+};
+
+var handleSquareClick = event => {
+  updateBoardOnClick(event);
+  event.toElement.innerText = nextClick;
   if (nextClick === "X") {
     nextClick = "O";
     boardValue = -1;
