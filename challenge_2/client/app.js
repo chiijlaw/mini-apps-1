@@ -1,5 +1,6 @@
 $("form").on("submit", function(event) {
   event.preventDefault();
+  console.log(event.target.value);
   var formElement = document.getElementById("formId");
   var FD = new FormData(formElement);
   var dataObj = {};
@@ -12,4 +13,5 @@ $("form").on("submit", function(event) {
       .empty()
       .append(`${data}`);
   });
+  formElement.reset();
 });
