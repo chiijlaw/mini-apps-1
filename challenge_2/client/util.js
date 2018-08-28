@@ -30,12 +30,15 @@ exports.formatReport = function(obj) {
     reportValues.push(bucket);
   });
 
-  // assemble CMV-formated report from keys and values
+  // assemble top line of CMV-formated report from keys
   var CMVReport = "<br>";
   CMVReport = CMVReport.concat(topLineOfReport.join(","));
   CMVReport = CMVReport.concat("</br>");
+  // assemble each row of CMV-formated report from values
+  var counter = 0;
   reportValues.forEach(function(reportArray) {
-    CMVReport = CMVReport = CMVReport.concat("</br>");
+    counter++;
+    CMVReport = CMVReport = CMVReport.concat(`</br>${counter}`);
     CMVReport = CMVReport.concat(reportArray.join(","));
     CMVReport = CMVReport = CMVReport.concat("</br>");
   });
