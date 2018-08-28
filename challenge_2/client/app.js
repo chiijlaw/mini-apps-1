@@ -10,6 +10,6 @@ $("form").on("submit", function(event) {
     console.log(data);
     $("#result")
       .empty()
-      .append(`<p>${JSON.stringify(data)}</p>`);
+      .append(`${data}`);
   });
 });
