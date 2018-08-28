@@ -1,4 +1,5 @@
 const express = require("express");
+const util = require("./client/util.js");
 const app = express();
 
 app.use(express.static("client"));
@@ -18,9 +19,10 @@ app.post("/", function(req, res) {
     })
     .on("end", function() {
       body = Buffer.concat(body).toString();
-
+      var output = JSON.parse(body);
+      var CMVReport = util.formatReport(output);
       res.status(201);
-      res.send(JSON.parse(body));
+      res.send(CMVReport);
     });
 });
 

@@ -6,7 +6,7 @@ $("form").on("submit", function(event) {
   for (var value of FD.values()) {
     dataObj.data = value;
   }
-  $.post("/", dataObj.data).done(function(data) {
+  $.post("/", JSON.stringify(dataObj.data)).done(function(data) {
     console.log(data);
     $("#result")
       .empty()
