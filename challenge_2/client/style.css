@@ -1,0 +1,21 @@
+body {
+  background-color: peachpuff;
+}
+
+table {
+  width: -webkit-fill-available;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  flex: auto;
+  width: -webkit-fill-available;
+}
+
+.report {
+  display: flex;
+  flex-direction: row;
+  width: -webkit-fill-available;
+}

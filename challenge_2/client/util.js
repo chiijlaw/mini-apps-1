@@ -1,9 +1,12 @@
 exports.formatReport = function(obj) {
-  obj = JSON.parse(obj);
   var reports = [];
+  var uniqueId = 0;
   // Aquire an array of individual reports
   // from a javascript object
   var flatten = function(node) {
+    uniqueId++;
+    node.reportId = uniqueId;
+
     reports.push(node);
 
     if (node.children) {
@@ -31,16 +34,14 @@ exports.formatReport = function(obj) {
   });
 
   // assemble top line of CMV-formated report from keys
-  var CMVReport = "<br>";
-  CMVReport = CMVReport.concat(topLineOfReport.join(","));
-  CMVReport = CMVReport.concat("</br>");
+  var CMVReport = "<tr><td>";
+  CMVReport = CMVReport.concat(topLineOfReport.join("</td><td>"));
+  CMVReport = CMVReport.concat("</td></tr>");
   // assemble each row of CMV-formated report from values
-  var counter = 0;
   reportValues.forEach(function(reportArray) {
-    counter++;
-    CMVReport = CMVReport = CMVReport.concat(`</br>${counter}`);
-    CMVReport = CMVReport.concat(reportArray.join(","));
-    CMVReport = CMVReport = CMVReport.concat("</br>");
+    CMVReport = CMVReport = CMVReport.concat("<tr><td>");
+    CMVReport = CMVReport.concat(reportArray.join("</td><td>"));
+    CMVReport = CMVReport = CMVReport.concat("</td></tr>");
   });
   return CMVReport;
 };

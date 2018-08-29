@@ -6,21 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link href="style.css" rel="stylesheet" type="text/css">
     <title>CSV</title>
 </head>
 
 <body>
-    <div>CSV Report Generator</div>
-    <div id="submit">
-        <form action="../server.js" method="post " id="formId">
-            <label for="JSON ">JSON:</label>
-            <textarea name="data" id="data" cols="30" rows="10"></textarea>
-            <div>
-                <button type="submit">Convert JSON to CSV</button>
-            </div>
-        </form>
+    <div class="container">
+        <div class="container">
+            <h1>
+                CSV Report Generator
+            </h1>
+        </div>
+        <div id="submit" class="container">
+            <form action="../server.js" method="post " id="formId">
+                <label for="JSON"></label>
+                <textarea name="data" id="data" cols="30" rows="10"></textarea>
+                <div class="container">
+                    <button type="submit">Convert JSON to CSV</button>
+                </div>
+            </form>
+        </div>
+        <div id="result" class="container">CMV Report will be displayed here</div>
     </div>
-    <div id="result">Empty for now</div>
 </body>
 <script src="app.js"></script>
 
