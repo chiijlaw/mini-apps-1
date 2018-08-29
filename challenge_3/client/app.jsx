@@ -6,7 +6,8 @@ class App extends React.Component {
       form1Display: "none",
       form2Display: "none",
       form3Display: "none",
-      summaryDisplay: "none"
+      summaryDisplay: "none",
+      formData: {}
     };
   }
   handleCheckoutClick() {
@@ -36,7 +37,7 @@ class App extends React.Component {
   }
 
   handleSummaryClick() {
-    //send information to database
+    //TODO send information to server
     this.setState({
       summaryDisplay: "none",
       homePageDisplay: "block"
@@ -79,12 +80,22 @@ var Homepage = props => (
     </button>
   </div>
 );
+
 var Form1 = props => (
   <div style={{ display: props.display }}>
     Form1!!
     <form>
       <p>
-        <input type="text" />
+        Name
+        <input type="text" name="name" />
+      </p>
+      <p>
+        Email
+        <input type="text" name="email" />
+      </p>
+      <p>
+        Password
+        <input type="text" name="password" />
       </p>
     </form>
     <button name="submit" onClick={props.handleNextClick}>
@@ -92,22 +103,52 @@ var Form1 = props => (
     </button>
   </div>
 );
+
 var Form2 = props => (
   <div style={{ display: props.display }}>
     Form2!!
+    <form>
+      <p>
+        Address
+        <input type="text" name="addressLine1" />
+        <input type="text" name="addressLine2" />
+      </p>
+      <p>
+        <input type="text" name="city" />
+        <input type="text" name="state" />
+        <input type="text" name="zipCode" />
+      </p>
+      <p>
+        Phone Number
+        <input type="text" name="phoneNumber" />
+      </p>
+    </form>
     <button name="submit" onClick={props.handleNextClick}>
       Next
     </button>
   </div>
 );
+
 var Form3 = props => (
   <div style={{ display: props.display }}>
     Form3!!
+    <form>
+      <p>
+        Credit Card
+        <input type="text" name="creditCard" />
+      </p>
+      <p>
+        <input type="text" name="expiryDate" />
+        <input type="text" name="CVV" />
+        <input type="text" name="billingZip" />
+      </p>
+    </form>
     <button name="submit" onClick={props.handleNextClick}>
       Next
     </button>
   </div>
 );
+
 var Summary = props => (
   <div style={{ display: props.display }}>
     Summary!!
