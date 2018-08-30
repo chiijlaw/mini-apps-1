@@ -2,22 +2,29 @@ const express = require("express");
 const app = express();
 const MongoClient = require("mongodb").MongoClient;
 const assert = require("assert");
+const mongoose = require("mongoose");
+const Customer = require("./model");
 
-const url = "mongodb://localhost:27017";
+const url = "mongodb://localhost:27017/customers";
 
-dbName = "customers";
+// dbName = "customers";
 
-MongoClient.connect(
-  url,
-  function(err, client) {
-    assert.equal(null, err);
-    console.log("Connected successfully to server");
+mongoose.connect(url);
+mongoose.Promise = global.Promise;
+var db = mongoose.connection;
+db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
-    const db = client.db(dbName);
+// MongoClient.connect(
+//   url,
+//   function(err, client) {
+//     assert.equal(null, err);
+//     console.log("Connected successfully to server");
 
-    client.close();
-  }
-);
+//     const db = client.db(dbName);
+
+//     client.close();
+//   }
+// );
 
 app.use(express.static("public"));
 
@@ -36,8 +43,10 @@ app.post("/", (req, res) => {
     })
     .on("end", () => {
       body = Buffer.concat(body).toString();
-      //TODO send body onto database
-      console.log(body, "----body----");
+      body = JSON.parse(body);
+      Customer.create(body, function(err, callback) {
+        if (err) return callback(err, null);
+      });
       res.status(201);
       res.send("Posted info");
     });
@@ -52,7 +61,10 @@ app.put("/", (req, res) => {
     })
     .on("end", () => {
       body = Buffer.concat(body).toString();
-      //TODO send body into database
+      body = JSON.parse(body);
+      Customer.updateOne({ email: body.email }, body, function(err, res) {
+        if (err) return callback(err, null);
+      });
       res.status(201);
       res.send("Updates database");
     });

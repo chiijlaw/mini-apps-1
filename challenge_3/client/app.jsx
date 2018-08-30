@@ -6,7 +6,8 @@ class App extends React.Component {
       form1Display: "none",
       form2Display: "none",
       form3Display: "none",
-      summaryDisplay: "none"
+      summaryDisplay: "none",
+      email: ""
     };
   }
   handleCheckoutClick() {
@@ -16,11 +17,12 @@ class App extends React.Component {
     });
   }
 
-  handleNextClick(myData) {
+  handleNextClick(myData, customerEmail) {
     if (this.state.form1Display === "block") {
       this.setState({
         form1Display: "none",
-        form2Display: "block"
+        form2Display: "block",
+        email: customerEmail
       });
       axios.post("/", myData);
     } else if (this.state.form2Display === "block") {
@@ -28,30 +30,24 @@ class App extends React.Component {
         form2Display: "none",
         form3Display: "block"
       });
+      myData.email = customerEmail;
       axios.put("/", myData);
     } else if (this.state.form3Display === "block") {
       this.setState({
         form3Display: "none",
         summaryDisplay: "block"
       });
+      myData.email = customerEmail;
       axios.put("/", myData);
     }
   }
 
-  handleFormDataUpdate(someKey, someValue, formData) {
-    var obj = {};
-    obj[someKey] = someValue;
-    this.setState({
-      formData: Object.assign(obj, formData)
-    });
-  }
-
   handleSummaryClick() {
-    axios.put("/", { complete: true });
     this.setState({
       summaryDisplay: "none",
       homePageDisplay: "block"
     });
+    location.reload();
   }
 
   render() {
@@ -69,14 +65,17 @@ class App extends React.Component {
         <Form2
           display={this.state.form2Display}
           handleNextClick={this.handleNextClick.bind(this)}
+          email={this.state.email}
         />
         <Form3
           display={this.state.form3Display}
           handleNextClick={this.handleNextClick.bind(this)}
+          email={this.state.email}
         />
         <Summary
           display={this.state.summaryDisplay}
           handleSummaryClick={this.handleSummaryClick.bind(this)}
+          email={this.state.email}
         />
       </div>
     );
@@ -85,7 +84,12 @@ class App extends React.Component {
 var Homepage = props => (
   <div style={{ display: props.display }}>
     Homepage!!
-    <button name="submit" onClick={props.handleCheckoutClick}>
+    <button
+      name="submit"
+      onClick={() => {
+        props.handleCheckoutClick();
+      }}
+    >
       Checkout
     </button>
   </div>
@@ -129,7 +133,7 @@ class Form1 extends React.Component {
         <button
           name="submit"
           onClick={() => {
-            this.props.handleNextClick(this.state);
+            this.props.handleNextClick(this.state, this.state.email);
           }}
         >
           Next
@@ -191,7 +195,7 @@ class Form2 extends React.Component {
         <button
           name="submit"
           onClick={() => {
-            this.props.handleNextClick(this.state);
+            this.props.handleNextClick(this.state, this.props.email);
           }}
         >
           Next
@@ -240,7 +244,7 @@ class Form3 extends React.Component {
         <button
           name="submit"
           onClick={() => {
-            this.props.handleNextClick(this.state);
+            this.props.handleNextClick(this.state, this.props.email);
           }}
         >
           Next
@@ -253,7 +257,12 @@ class Form3 extends React.Component {
 var Summary = props => (
   <div style={{ display: props.display }}>
     Summary!!
-    <button name="submit" onClick={props.handleSummaryClick}>
+    <button
+      name="submit"
+      onClick={() => {
+        props.handleSummaryClick();
+      }}
+    >
       Purchase
     </button>
   </div>
