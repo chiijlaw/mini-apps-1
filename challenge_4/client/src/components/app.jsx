@@ -17,11 +17,13 @@ class App extends React.Component {
       numbers: [0, 1, 2, 3, 4, 5, 6, 7]
     };
   }
-  handleColumnClick(column) {
+  handleColumnClick(column, y) {
     var state = {};
+    var x;
     state[column] = this.state[column];
     for (var i = 7; i >= 0; i--) {
       if (state[column][i] === 0) {
+        x = i;
         state[column][i] = this.state.play;
         i = -1;
       }
@@ -31,13 +33,34 @@ class App extends React.Component {
     } else {
       state.play = 1;
     }
-    this.setState(state);
+    // this.setState(state);
+    this.setState(prevState => {
+      return state;
+    });
+    this.checkWin(x, y);
   }
 
   checkWin(x, y) {
-    if (this.state["column" + y].join("").includes("1111")) {
-      console.log(true);
+    var winCondition;
+    this.state.play === 1
+      ? (winCondition = "1111")
+      : (winCondition = "-1-1-1-1");
+    if (this.state["column" + y].join("").includes(winCondition)) {
+      winCondition === "1111"
+        ? console.log("Red wins!")
+        : console.log("Blue wins!");
     }
+    var maDiaIndex = x + y;
+    var miDiaIndex = x - y;
+    var minDiag = [];
+    var yStart = 0;
+    var xStart = x;
+    while (xStart <= 7 && yStart <= 7) {
+      minDiag.push(this.state["column" + y][x]);
+      xStart++;
+      yStart++;
+    }
+    console.log(minDiag);
   }
 
   render() {
