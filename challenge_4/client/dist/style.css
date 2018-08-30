@@ -2,6 +2,15 @@
   display: flex;
   flex-direction: column;
 }
+
+.square1 {
+  color: red;
+}
+
+.square-1 {
+  color: blue;
+}
+
 #board {
   display: flex;
   flex-direction: row;

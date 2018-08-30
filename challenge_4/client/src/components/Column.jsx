@@ -8,6 +8,7 @@ var Column = props => (
           key={number}
           y={props.y}
           x={number}
+          squareState={props.columnState[number]}
           handleColumnClick={props.handleColumnClick.bind(null, props.yColumn)}
         />
       ))}

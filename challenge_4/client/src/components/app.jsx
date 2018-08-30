@@ -18,17 +18,28 @@ class App extends React.Component {
     };
   }
   handleColumnClick(column) {
-    console.log(column);
-    var state = this.state[column];
+    var state = {};
+    state[column] = this.state[column];
     for (var i = 7; i >= 0; i--) {
-      if (state[i] === 0) {
-        state[i] = this.state.play;
+      if (state[column][i] === 0) {
+        state[column][i] = this.state.play;
         i = -1;
       }
     }
-    console.log(state);
+    if (this.state.play === 1) {
+      state.play = -1;
+    } else {
+      state.play = 1;
+    }
     this.setState(state);
   }
+
+  checkWin(x, y) {
+    if (this.state["column" + y].join("").includes("1111")) {
+      console.log(true);
+    }
+  }
+
   render() {
     return (
       <div>
@@ -39,6 +50,7 @@ class App extends React.Component {
               <Column
                 key={number}
                 numbers={this.state.numbers}
+                columnState={this.state["column" + number]}
                 yColumn={"column" + number}
                 y={number}
                 handleColumnClick={this.handleColumnClick.bind(this)}
