@@ -11,12 +11,14 @@
   "author": "Chii",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "express": "^4.16.3",
     "mongodb": "^3.1.4",
+    "mongoose": "^5.2.10",
     "nodemon": "^1.18.4",
     "react": "^16.4.2",
     "react-dom": "^16.4.2"
