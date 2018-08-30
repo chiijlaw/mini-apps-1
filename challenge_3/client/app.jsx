@@ -110,6 +110,7 @@ class Form1 extends React.Component {
             <input
               type="text"
               name="name"
+              placeholder="name"
               onChange={e => this.setState({ name: e.target.value })}
             />
           </p>
@@ -118,6 +119,7 @@ class Form1 extends React.Component {
             <input
               type="text"
               name="email"
+              placeholder="email"
               onChange={e => this.setState({ email: e.target.value })}
             />
           </p>
@@ -126,6 +128,7 @@ class Form1 extends React.Component {
             <input
               type="text"
               name="password"
+              placeholder="password"
               onChange={e => this.setState({ password: e.target.value })}
             />
           </p>
@@ -158,11 +161,13 @@ class Form2 extends React.Component {
             <input
               type="text"
               name="addressLine1"
+              placeholder="line 1"
               onChange={e => this.setState({ addressLine1: e.target.value })}
             />
             <input
               type="text"
               name="addressLine2"
+              placeholder="line 2"
               onChange={e => this.setState({ addressLine2: e.target.value })}
             />
           </p>
@@ -170,16 +175,19 @@ class Form2 extends React.Component {
             <input
               type="text"
               name="city"
+              placeholder="city"
               onChange={e => this.setState({ city: e.target.value })}
             />
             <input
               type="text"
               name="state"
+              placeholder="state"
               onChange={e => this.setState({ state: e.target.value })}
             />
             <input
               type="text"
               name="zipCode"
+              placeholder="zip code"
               onChange={e => this.setState({ zipCode: e.target.value })}
             />
           </p>
@@ -188,6 +196,7 @@ class Form2 extends React.Component {
             <input
               type="text"
               name="phoneNumber"
+              placeholder="phone number"
               onChange={e => this.setState({ phoneNumber: e.target.value })}
             />
           </p>
@@ -220,6 +229,7 @@ class Form3 extends React.Component {
             <input
               type="text"
               name="creditCard"
+              placeholder="credit card number"
               onChange={e => this.setState({ creditCard: e.target.value })}
             />
           </p>
@@ -227,16 +237,19 @@ class Form3 extends React.Component {
             <input
               type="text"
               name="expiryDate"
+              placeholder="expiration date"
               onChange={e => this.setState({ expiryDate: e.target.value })}
             />
             <input
               type="text"
               name="CVV"
+              placeholder="CVV"
               onChange={e => this.setState({ CVV: e.target.value })}
             />
             <input
               type="text"
               name="billingZip"
+              placeholder="billing zip code"
               onChange={e => this.setState({ billingZip: e.target.value })}
             />
           </p>
