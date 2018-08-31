@@ -50,7 +50,6 @@ class App extends React.Component {
         ? console.log("Red wins!")
         : console.log("Blue wins!");
     }
-    var maDiaIndex = x + y;
     var miDiaIndex = x - y;
     var minDiag = [];
     var yStart = 0;
@@ -66,7 +65,31 @@ class App extends React.Component {
       xStart++;
       yStart++;
     }
-    console.log(minDiag);
+    if (minDiag.join("").includes(winCondition)) {
+      winCondition === "1111"
+        ? console.log("Red wins!")
+        : console.log("Blue wins!");
+    }
+    var maDiaIndex = x + y;
+    var majDiag = [];
+    var yStart = 0;
+    if (maDiaIndex > 7) {
+      yStart = maDiaIndex - 7;
+    }
+    var xStart = 7;
+    if (maDiaIndex < 7) {
+      xStart = maDiaIndex;
+    }
+    while (xStart >= 0 && yStart <= 7) {
+      majDiag.push(this.state["column" + yStart][xStart]);
+      xStart--;
+      yStart++;
+    }
+    if (majDiag.join("").includes(winCondition)) {
+      winCondition === "1111"
+        ? console.log("Red wins!")
+        : console.log("Blue wins!");
+    }
   }
 
   render() {
