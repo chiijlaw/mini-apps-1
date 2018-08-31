@@ -54,9 +54,15 @@ class App extends React.Component {
     var miDiaIndex = x - y;
     var minDiag = [];
     var yStart = 0;
-    var xStart = x;
+    if (miDiaIndex < 0) {
+      yStart = Math.abs(miDiaIndex);
+    }
+    var xStart = 0;
+    if (miDiaIndex > 0) {
+      xStart = miDiaIndex;
+    }
     while (xStart <= 7 && yStart <= 7) {
-      minDiag.push(this.state["column" + y][x]);
+      minDiag.push(this.state["column" + yStart][xStart]);
       xStart++;
       yStart++;
     }
