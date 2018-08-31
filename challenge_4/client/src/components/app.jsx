@@ -42,14 +42,27 @@ class App extends React.Component {
 
   checkWin(x, y) {
     var winCondition;
+    //Check for win conditions based on whose turn it is
     this.state.play === 1
       ? (winCondition = "1111")
       : (winCondition = "-1-1-1-1");
+    //Check for column win
     if (this.state["column" + y].join("").includes(winCondition)) {
       winCondition === "1111"
         ? console.log("Red wins!")
         : console.log("Blue wins!");
     }
+    //Check for row in
+    var rowArray = [];
+    for (var i = 0; i < 8; i++) {
+      rowArray.push(this.state["column" + i][x]);
+    }
+    if (rowArray.join("").includes(winCondition)) {
+      winCondition === "1111"
+        ? console.log("Red wins!")
+        : console.log("Blue wins!");
+    }
+    //Check for Minor diagonal win
     var miDiaIndex = x - y;
     var minDiag = [];
     var yStart = 0;
@@ -70,6 +83,7 @@ class App extends React.Component {
         ? console.log("Red wins!")
         : console.log("Blue wins!");
     }
+    //Check for major diagonal win
     var maDiaIndex = x + y;
     var majDiag = [];
     var yStart = 0;
