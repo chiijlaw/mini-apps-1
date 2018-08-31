@@ -1,17 +1,47 @@
+ul {
+  padding: 10px;
+}
+
+.background {
+  background-color: rgb(49, 197, 113);
+}
+
 .column {
   display: flex;
   flex-direction: column;
+  align-content: center;
+  background-color: palegoldenrod;
 }
 
-.square1 {
+.square {
+  background-color: palegoldenrod;
+}
+
+.dot.dot1 {
   background-color: red;
+  color: red;
 }
 
-.square-1 {
+.dot.dot3 {
   background-color: blue;
+  color: blue;
+}
+
+.dot {
+  width: 20px;
+  height: 20px;
+  background-color: rgb(67, 179, 115);
+  border-radius: 50%;
+  display: inline-block;
 }
 
 #board {
   display: flex;
   flex-direction: row;
+  align-self: center;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
 }

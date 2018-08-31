@@ -2,10 +2,10 @@ var Square = props => (
   <div>
     <div
       onClick={() => props.handleColumnClick(props.y)}
-      className={"square" + props.squareState}
+      className={`${"square" + props.squareState} square`}
       id={`${props.x},${props.y}`}
     >
-      Square component
+      <span className={`dot ${"dot" + props.squareState}`} />
     </div>
   </div>
 );

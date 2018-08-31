@@ -6,6 +6,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       play: 1,
+      counter: 0,
       column0: [0, 0, 0, 0, 0, 0, 0, 0],
       column1: [0, 0, 0, 0, 0, 0, 0, 0],
       column2: [0, 0, 0, 0, 0, 0, 0, 0],
@@ -21,46 +22,47 @@ class App extends React.Component {
     var state = {};
     var x;
     state[column] = this.state[column];
+    if (state[column][0] !== 0) {
+      return alert("No more space left!");
+    }
+
     for (var i = 7; i >= 0; i--) {
       if (state[column][i] === 0) {
         x = i;
+        state.counter = this.state.counter + 1;
         state[column][i] = this.state.play;
         i = -1;
       }
     }
     if (this.state.play === 1) {
-      state.play = -1;
+      state.play = 3;
     } else {
       state.play = 1;
     }
-    // this.setState(state);
     this.setState(prevState => {
       return state;
     });
     this.checkWin(x, y);
+    if (this.state.counter === 63) {
+      alert("It's a tie! Good Game!");
+    }
   }
 
   checkWin(x, y) {
     var winCondition;
     //Check for win conditions based on whose turn it is
-    this.state.play === 1
-      ? (winCondition = "1111")
-      : (winCondition = "-1-1-1-1");
+    this.state.play === 1 ? (winCondition = "1111") : (winCondition = "3333");
     //Check for column win
     if (this.state["column" + y].join("").includes(winCondition)) {
-      winCondition === "1111"
-        ? console.log("Red wins!")
-        : console.log("Blue wins!");
+      winCondition === "1111" ? alert("Red wins!") : alert("Blue wins!");
     }
-    //Check for row in
+    //Check for row win
     var rowArray = [];
     for (var i = 0; i < 8; i++) {
       rowArray.push(this.state["column" + i][x]);
     }
     if (rowArray.join("").includes(winCondition)) {
-      winCondition === "1111"
-        ? console.log("Red wins!")
-        : console.log("Blue wins!");
+      winCondition === "1111" ? alert("Red wins!") : alert("Blue wins!");
     }
     //Check for Minor diagonal win
     var miDiaIndex = x - y;
@@ -79,9 +81,7 @@ class App extends React.Component {
       yStart++;
     }
     if (minDiag.join("").includes(winCondition)) {
-      winCondition === "1111"
-        ? console.log("Red wins!")
-        : console.log("Blue wins!");
+      winCondition === "1111" ? alert("Red wins!") : alert("Blue wins!");
     }
     //Check for major diagonal win
     var maDiaIndex = x + y;
@@ -100,17 +100,15 @@ class App extends React.Component {
       yStart++;
     }
     if (majDiag.join("").includes(winCondition)) {
-      winCondition === "1111"
-        ? console.log("Red wins!")
-        : console.log("Blue wins!");
+      winCondition === "1111" ? alert("Red wins!") : alert("Blue wins!");
     }
   }
 
   render() {
     return (
       <div>
-        <div>
-          <h1>Game Start!</h1>
+        <div id="container">
+          <h1 style={{ alignSelf: "center" }}>Connect Four!</h1>
           <ul id="board">
             {this.state.numbers.map(number => (
               <Column
