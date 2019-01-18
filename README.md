@@ -3,7 +3,7 @@ This is a project I completed as a student at [hackreactor](http://hackreactor.c
 This project involved creating single page web applications within a day.
 
 ## Challenge 1
-Tic-Tac-Toe with jQuery, HTML, CSS
+Tic-Tac-Toe with jQuery, HTML, CSS.
 
 ## Challenge 2
 JSON to CSV with jQuery, HTML, CSS
