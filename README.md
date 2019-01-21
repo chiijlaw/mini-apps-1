@@ -9,7 +9,7 @@ Tic-Tac-Toe with jQuery, HTML, CSS.
 JSON to CSV with jQuery, HTML, CSS.
 
 ## Challenge 3
-Sales checkout page with React
+Sales checkout page with React.
 
 ## Challenge 4
 Connect 4 with React
