@@ -12,7 +12,7 @@ JSON to CSV with jQuery, HTML, CSS.
 Sales checkout page with React.
 
 ## Challenge 4
-Connect 4 with React
+Connect 4 with React.
 
 ## Bonus 1
 Checkers with React
