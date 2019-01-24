@@ -15,4 +15,4 @@ Sales checkout page with React.
 Connect 4 with React.
 
 ## Bonus 1
-Checkers with React
+Checkers with React.
